@@ -1,7 +1,7 @@
 import streamlit as st
 import os
 from google import genai
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 
 from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
@@ -12,7 +12,7 @@ from langchain_classic import hub # For loading the RAG prompt (optional, not st
 
 
 # Initialize the API key from secrets file
-client = genai.Client(api_key = st.secrets["GEMINI_API_KEY"])
+GEMINI_API_KEY = genai.Client(api_key = st.secrets["API_KEY"])
 
 # --- Streamlit UI Setup ---
 st.set_page_config(page_title="Local Knowledge Base with Gemini", layout="wide")
