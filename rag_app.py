@@ -1,5 +1,6 @@
 import streamlit as st
 import os
+from google import genai
 from dotenv import load_dotenv
 
 from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
