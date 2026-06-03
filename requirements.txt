@@ -1,0 +1,9 @@
+streamlit
+langchain
+langchain-classic
+langchain-community
+langchain-google-genai
+langchain-text-splitters
+chromadb
+pypdf # For PDF document loading
+python-dotenv
