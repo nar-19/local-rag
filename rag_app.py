@@ -209,7 +209,7 @@ with st.expander("Click to view processed documents"):
 
     documents = load_documents(doc_dir)
     loaded_document_names = sorted(set(os.path.basename(doc.metadata.get('source', 'Unknown')) for doc in documents))
-    for doc_name in loaded_document_names':
+    for doc_name in loaded_document_names:
         st.markdown(f"- `{doc_name}`")
 
 
