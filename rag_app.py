@@ -207,6 +207,7 @@ st.subheader("Knowledge Tree Structure")
 with st.expander("Click to view processed documents"):
     st.markdown(st.session_state['knowledge_tree_structure'])
 
+documents = load_documents(doc_directory)
 loaded_document_names = sorted(set(
             os.path.basename(doc.metadata.get('source', 'Unknown'))
             for doc in documents))
