@@ -9,5 +9,5 @@ chromadb
 pypdf # For PDF document loading
 python-dotenv
 protobuf==3.20.3
-
+sentence_transformers
 langchain_huggingface
