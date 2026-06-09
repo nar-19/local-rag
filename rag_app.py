@@ -207,6 +207,13 @@ st.subheader("Knowledge Tree Structure")
 with st.expander("Click to view processed documents"):
     st.markdown(st.session_state['knowledge_tree_structure'])
 
+loaded_document_names = sorted(set(
+            os.path.basename(doc.metadata.get('source', 'Unknown'))
+            for doc in documents))
+for i, name in enumerate(st.session_state['loaded_document_names']):
+    cols[i % 3].markdown(f"📄 `{name}`")
+
+
 # Query bar
 st.subheader("Ask a Question")
 if st.session_state['rag_chain']:
