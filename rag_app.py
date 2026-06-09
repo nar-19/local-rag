@@ -3,7 +3,8 @@ import os
 from google import genai
 # from dotenv import load_dotenv
 
-from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
+from langchain_google_genai import ChatGoogleGenerativeAI # GoogleGenerativeAIEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders import PyPDFLoader, TextLoader, DirectoryLoader
 from langchain_community.vectorstores import Chroma
@@ -97,7 +98,14 @@ def process_documents_and_create_vector_store(doc_directory):
     # 1. Attempt to load existing vector store
     if os.path.exists(VECTOR_DB_DIR) and os.listdir(VECTOR_DB_DIR):
         try:
-            embeddings = GoogleGenerativeAIEmbeddings(model="models/gemini-embedding-001", google_api_key=GEMINI_API_KEY)
+            # embeddings = GoogleGenerativeAIEmbeddings(model="models/gemini-embedding-001", google_api_key=GEMINI_API_KEY)
+
+            embeddings = HuggingFaceEmbeddings(
+                model_name="sentence-transformers/all-MiniLM-L6-v2",
+                model_kwargs={"device": "cpu"},   # use "cuda" if you have a GPU
+                encode_kwargs={"normalize_embeddings": True}
+            )
+            
             st.session_state['vector_store'] = Chroma(persist_directory=VECTOR_DB_DIR, embedding_function=embeddings, collection_name=COLLECTION_NAME)
             
             # Verify if it actually contains data
