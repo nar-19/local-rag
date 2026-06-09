@@ -208,12 +208,9 @@ with st.expander("Click to view processed documents"):
     st.markdown(st.session_state['knowledge_tree_structure'])
 
     documents = load_documents(doc_dir)
-    loaded_document_names = sorted(set(
-    os.path.basename(doc.metadata.get('source', 'Unknown'))
-    for doc in documents))
+    loaded_document_names = sorted(set(os.path.basename(doc.metadata.get('source', 'Unknown')) for doc in documents))
     for doc_name in loaded_document_names':
         st.markdown(f"- `{doc_name}`")
-
 
 
 # Query bar
