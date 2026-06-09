@@ -17,6 +17,7 @@ GEMINI_API_KEY = st.secrets["API_KEY"]
 client = genai.Client(api_key = st.secrets["API_KEY"])
 # Initialize Vector DB
 VECTOR_DB_DIR = "chroma_db" # Directory to persist the Chroma DB
+COLLECTION_NAME = "langchain"  # Add this constant at the top
 
 # --- Streamlit UI Setup ---
 st.set_page_config(page_title="Local Knowledge Base with Gemini", layout="wide")
@@ -97,7 +98,7 @@ def process_documents_and_create_vector_store(doc_directory):
     if os.path.exists(VECTOR_DB_DIR) and os.listdir(VECTOR_DB_DIR):
         try:
             embeddings = GoogleGenerativeAIEmbeddings(model="models/gemini-embedding-001", google_api_key=GEMINI_API_KEY)
-            st.session_state['vector_store'] = Chroma(persist_directory=VECTOR_DB_DIR, embedding_function=embeddings)
+            st.session_state['vector_store'] = Chroma(persist_directory=VECTOR_DB_DIR, embedding_function=embeddings, collection_name=COLLECTION_NAME)
             
             # Verify if it actually contains data
             if st.session_state['vector_store']._collection.count() > 0: # Access internal count for verification
@@ -134,9 +135,10 @@ def process_documents_and_create_vector_store(doc_directory):
         st.session_state['vector_store'] = Chroma.from_documents(
             documents=splits,
             embedding=embeddings,
-            persist_directory=VECTOR_DB_DIR
+            persist_directory=VECTOR_DB_DIR,
+            collection_name=COLLECTION_NAME
         )
-        st.session_state['vector_store'].persist() # Ensures data is written to disk
+        # st.session_state['vector_store'].persist() # Ensures data is written to disk
         st.success(f"Knowledge base created with {len(splits)} chunks and saved to '{VECTOR_DB_DIR}'.")
 
         # Update knowledge tree structure display
