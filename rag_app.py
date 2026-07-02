@@ -26,8 +26,8 @@ VECTOR_DB_DIR = "chroma_db" # Directory to persist the Chroma DB
 COLLECTION_NAME = "langchain"  # Add this constant at the top
 
 # --- Streamlit UI Setup ---
-st.set_page_config(page_title="HR Knowledge Base with Gemini", layout="wide")
-st.title("📚 Local Knowledge Base with Gemini")
+st.set_page_config(page_title="HR Knowledge Base", layout="wide")
+st.title("📚 HR Knowledge Base with RAG & LLM")
 st.markdown("---")
 
 
@@ -60,7 +60,7 @@ st.markdown(
         border-bottom-right-radius: 4px;
     }
     .answer-bubble {
-        background-color: #FDF6E3; /* light pastel cream */
+        background-color: #FFFFC5; /* light pastel cream */
         color: #1a1a1a;
         border-bottom-left-radius: 4px;
     }
