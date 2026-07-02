@@ -19,8 +19,8 @@ from langchain_classic import hub # For loading the RAG prompt (optional, not st
 
 # Initialize the API key from secrets file
 GEMINI_API_KEY = st.secrets["API_KEY"]
-# Initialize genai client
-client = genai.Client(api_key = st.secrets["API_KEY"])
+# # Initialize genai client
+# client = genai.Client(api_key = st.secrets["API_KEY"])
 # Initialize Vector DB
 VECTOR_DB_DIR = "chroma_db" # Directory to persist the Chroma DB
 COLLECTION_NAME = "langchain"  # Add this constant at the top
