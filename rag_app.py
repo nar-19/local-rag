@@ -475,7 +475,9 @@ with st.expander("Click to view processed documents"):
 # Query bar
 st.subheader("Ask a Question")
 if st.session_state['rag_chain']:
-    query = st.chat_input("Enter your query here... e.g. What is the leave policy during probation?")
+    query = st.chat_input("Enter your query here... e.g. What is the leave policy during probation? \n" +
+                          "Does the medical coverage covers dependents too? etc."
+                          )
 
     if query:
         # Add the new question to the persistent chat history immediately,
